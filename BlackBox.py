@@ -42,7 +42,7 @@ base_path = "blackboxfile"
 max_size_gb = 0.5  # 최대 용량 500MB
 
 # 카메라에서 클래스 객체 생성
-cap = cv2.VideoCapture('blackboxfile\video.mp4')
+cap = cv2.VideoCapture(r'data\video.mp4')
 
 if not cap.isOpened():
     sys.exit()
@@ -64,7 +64,7 @@ while True:
         os.makedirs(full_folder_path)
 
     # 비디오 파일 경로 설정 및 VideoWriter 객체 생성
-    out = cv2.VideoWriter(os.path.join(full_folder_path, f'{file_name}.mp4'), fourcc, fps, frameSize, isColor=False)
+    out = cv2.VideoWriter(os.path.join(full_folder_path, f'{file_name}.mp4'), fourcc, fps, frameSize)
 
     print(f"비디오 파일이 {full_folder_path} 경로에 저장됩니다: {file_name}.mp4")
 
