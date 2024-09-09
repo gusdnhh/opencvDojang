@@ -10,5 +10,5 @@ dst = cv2.imread(r'data2\field.bmp')
 cv2.copyTo(src,mask,dst)
 
 cv2.imshow('img',dst)
-cv2.waitKey()
 cv2.destroyAllWindows()
+cv2.waitKey()

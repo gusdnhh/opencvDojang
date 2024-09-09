@@ -1,0 +1,19 @@
+import cv2
+import numpy as np
+
+isColor = True
+
+src1 = cv2.imread('data2/airplane.bmp')  
+src2 = cv2.imread('data2/field.bmp')
+
+alpha = 0.23
+beta = 1 - alpha
+
+dst1 = cv2.addWeighted(src1, alpha=alpha, src2 = src2, beta = beta, gamma=0)
+
+
+cv2.imshow('src1', src1)
+cv2.imshow('src2', src2)
+cv2.imshow('dst1', dst1)
+cv2.waitKey()
+cv2.destroyAllWindows()

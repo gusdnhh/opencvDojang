@@ -1,19 +1,32 @@
+
 import cv2
 import numpy as np
 
-img = cv2.imread('img/taekwonv1.jpg')
-img2 = img.copy()
-draw = img.copy()
+def onChange(x):
+    pass
 
-pts1 = np.float32([[188,14], [85,202], [294,216]])
-pts2 = np.float32([[128,40], [85,307], [306,167]])
+def filteringTrackbar():
+    img = cv2.imread('data\noise.bmp', cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        print("Image not found or failed to load.")
+        return
+    cv2.namedWindow('filtering')
+    cv2.createTrackbar('SIZE', 'filtering', 1, 20, onChange)
+    cv2.imshow('filtering', img)
 
-x1,y1,w1,h1 = cv2.boundingRect(pts1)
-x2,y2,w2,h2 = cv2.boundingRect(pts2)
+    while True:
+        k = cv2.waitKey(0) & 0xFF
+        if k == 27:
+            break
 
-roi1 = img[y1:y1+h1, x1:x1+w1]
-roi2 = img[y2:y2+h2, x2:x2+w2]
+        size = cv2.getTrackbarPos('SIZE', 'filtering')
+        if size == 0:
+            size = 1
 
-offset1 = np.zeros((3,2), dtype=np.float32)
-offset2 = np.zeros((3,2), dty
-                   pe=np.float32)
+        kernel = np.ones((size, size), np.float32) / (size * size)
+        dst = cv2.filter2D(img, -1, kernel)
+
+        cv2.imshow('filtering', dst)
+    cv2.destroyAllWindows()
+
+filteringTrackbar()
