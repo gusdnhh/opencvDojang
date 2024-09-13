@@ -1,7 +1,7 @@
 import cv2, sys
 import numpy as np
 import math
-0
+
 def translate(src, x_move, y_move):    
     # 이미지의 이동 변환 x-> 200, y->100만큼 이동
     # 이동변환 행렬 생성

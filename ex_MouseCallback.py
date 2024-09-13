@@ -6,17 +6,18 @@ import numpy as np
 # 마우스에서 이벤트가 발생하면 호출되는 함수
 # 버튼 클릭, 마우스 좌표를 이동
 
-pt1 = (0,0)
-pt2 = (0,0)
+pt1 = None
+pt2 = None
+
 def mouse_callback(event, x, y, flags, param):
-    global img
+    global img, pt1, pt2
     
     if event == cv2.EVENT_LBUTTONDOWN:
         pt1 = (x,y)
         
     elif event == cv2.EVENT_LBUTTONUP:
-        pt2 =(x,y)
-        cv2.rectangle(img,pt1, pt2, (255,0,3))
+        pt2 = (x,y)
+        cv2.rectangle(img , pt1, pt2, (255,0,3), 1)
     
          
 
